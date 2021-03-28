@@ -81,20 +81,9 @@ app.get('/_api/get-tests', cors(), function(req, res, next) {
         });
     });
 
-
-app.listen(3000, function() {
-    console.log("Listening on port " + 3000);
-    console.log('Running Tests...');
-    setTimeout(function() {
-        try {
-            runner.run();
-        } catch (e) {
-            error = e;
-            console.log('Tests are not valid:');
-            console.log(error);
-        }
-    }, 1500);
-});
+const listener = app.listen(process.env.PORT || 3000, () => {
+    console.log('Your app is listening on port ' + listener.address().port)
+})
 
 
 module.exports = app; // for testing
